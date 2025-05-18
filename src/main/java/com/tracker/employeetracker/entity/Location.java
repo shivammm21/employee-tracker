@@ -1,22 +1,19 @@
 package com.tracker.employeetracker.entity;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Document(collection = "locations")
 @Data
-@Table(name = "location")
 public class Location {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private String employeeId;
 
     private double latitude;
     private double longitude;
